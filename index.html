@@ -3,304 +3,428 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business Growth Consulting - Transform Your Business</title>
+    <title>Patronus | Production-Grade AI Systems</title>
+    <meta name="description" content="Production-grade AI systems for teams that want execution, not theater. From idea to deployed workflows, copilots, and internal tools that actually work.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: '#0f172a',
-                        secondary: '#1e293b',
-                        cream: '#fefbf7',
-                        lightcream: '#fdf9f3'
+                        ink: '#0c111d',
+                        panel: '#111827',
+                        sand: '#f6f2ea',
+                        mist: '#d9e4ec',
+                        line: '#1f2937',
+                        accent: '#94f0c1',
+                        accentDeep: '#16392b'
                     },
                     fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif']
+                        sans: ['Manrope', 'system-ui', 'sans-serif'],
+                        mono: ['IBM Plex Mono', 'monospace']
+                    },
+                    boxShadow: {
+                        glow: '0 0 0 1px rgba(148, 240, 193, 0.14), 0 24px 80px rgba(12, 17, 29, 0.28)'
                     }
                 }
             }
         }
     </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background:
+                radial-gradient(circle at top left, rgba(148, 240, 193, 0.16), transparent 28%),
+                radial-gradient(circle at top right, rgba(96, 165, 250, 0.10), transparent 22%),
+                #0c111d;
+        }
+
+        .grid-noise {
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 36px 36px;
+            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 700ms ease, transform 700ms ease;
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .interactive-card {
+            transition:
+                background-color 220ms ease,
+                color 220ms ease,
+                border-color 220ms ease,
+                transform 220ms ease,
+                box-shadow 220ms ease,
+                opacity 220ms ease;
+        }
+
+        .interactive-card:hover,
+        .interactive-card:focus-within {
+            transform: translateY(-2px);
+        }
+
+        .interactive-card-dark:hover,
+        .interactive-card-dark:focus-within {
+            background: rgba(148, 240, 193, 0.08);
+            border-color: rgba(148, 240, 193, 0.26);
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+        }
+
+        .interactive-card-dark:hover h3,
+        .interactive-card-dark:focus-within h3,
+        .interactive-card-dark:hover p,
+        .interactive-card-dark:focus-within p {
+            color: inherit !important;
+        }
+
+        .interactive-card-dark:hover .card-kicker,
+        .interactive-card-dark:focus-within .card-kicker {
+            color: #94f0c1 !important;
+        }
+
+        .interactive-card-light:hover,
+        .interactive-card-light:focus-within {
+            background: rgba(148, 240, 193, 0.08);
+            color: #d9e4ec;
+            border-color: rgba(148, 240, 193, 0.26);
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+        }
+
+        .interactive-card-light:hover p,
+        .interactive-card-light:focus-within p {
+            color: rgba(217, 228, 236, 0.82) !important;
+        }
+
+        .interactive-card-light:hover .card-kicker,
+        .interactive-card-light:focus-within .card-kicker {
+            color: #94f0c1 !important;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal,
+            .reveal.is-visible {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+        }
+    </style>
 </head>
-<body class="bg-cream text-gray-800 font-sans">
-    <!-- Navigation -->
-    <nav class="bg-cream shadow-sm fixed w-full top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <div class="text-2xl font-bold text-primary">PatronusCorp</div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#about" class="text-gray-700 hover:text-primary transition">About</a>
-                    <a href="#services" class="text-gray-700 hover:text-primary transition">Services</a>
-                    <a href="#contact" class="text-gray-700 hover:text-primary transition">Contact</a>
+<body class="font-sans text-mist antialiased">
+    <div class="fixed inset-0 pointer-events-none grid-noise opacity-30"></div>
+
+    <nav id="siteNav" class="fixed inset-x-0 top-0 z-50 transition duration-300">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="mt-4 flex items-center justify-between rounded-full border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-md sm:px-6">
+                <a href="#top" class="flex items-center gap-3">
+                    <img src="./assets/logo.png" alt="Patronus logo" class="h-10 w-10 rounded-full border border-white/10 bg-white object-cover p-1">
+                    <div>
+                        <div class="text-sm font-semibold uppercase tracking-[0.24em] text-white">Patronus</div>
+                        <div class="text-xs text-mist/70">AI systems that ship</div>
+                    </div>
+                </a>
+
+                <div class="hidden items-center gap-8 md:flex">
+                    <a href="#work" class="text-sm text-mist/80 transition hover:text-white">Work</a>
+                    <a href="#approach" class="text-sm text-mist/80 transition hover:text-white">Approach</a>
+                    <a href="#offerings" class="text-sm text-mist/80 transition hover:text-white">Offerings</a>
+                    <a href="#contact" class="rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/20">Start a conversation</a>
                 </div>
-                <button id="mobileMenuBtn" class="md:hidden">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+
+                <button id="mobileMenuBtn" class="inline-flex items-center justify-center rounded-full border border-white/10 p-2 text-white md:hidden" aria-label="Toggle menu" aria-expanded="false">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 7h16M4 12h16M4 17h16"></path>
                     </svg>
                 </button>
             </div>
-            <div id="mobileMenu" class="hidden md:hidden pb-4">
-                <a href="#about" class="block py-2 text-gray-700 hover:text-primary">About</a>
-                <a href="#services" class="block py-2 text-gray-700 hover:text-primary">Services</a>
-                <a href="#testimonials" class="block py-2 text-gray-700 hover:text-primary">Testimonials</a>
-                <a href="#contact" class="block py-2 text-gray-700 hover:text-primary">Contact</a>
+
+            <div id="mobileMenu" class="mt-3 hidden rounded-3xl border border-white/10 bg-ink/95 p-4 shadow-glow md:hidden">
+                <div class="flex flex-col gap-3 text-sm">
+                    <a href="#work" class="rounded-2xl px-3 py-2 text-mist/80 transition hover:bg-white/5 hover:text-white">Work</a>
+                    <a href="#approach" class="rounded-2xl px-3 py-2 text-mist/80 transition hover:bg-white/5 hover:text-white">Approach</a>
+                    <a href="#offerings" class="rounded-2xl px-3 py-2 text-mist/80 transition hover:bg-white/5 hover:text-white">Offerings</a>
+                    <a href="#contact" class="rounded-2xl bg-accent px-3 py-2 font-semibold text-ink">Start a conversation</a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="bg-gradient-to-br from-primary to-secondary text-white pt-24 pb-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">Transform Your Business.<br>Accelerate Your Growth.</h1>
-            <p class="text-xl md:text-2xl mb-8 max-w-4xl mx-auto opacity-90">
-                Helping Business and Sales leaders fast-track growth, unlock new opportunities, break bottlenecks, and win markets — with lean strategy and smart execution.
-            </p>
-            <a href="#contact" class="bg-cream text-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-lightcream transition transform hover:scale-105">
-                Schedule a Consultation
-            </a>
-        </div>
-    </section>
+    <main id="top">
+        <section class="relative overflow-hidden px-4 pb-20 pt-32 sm:px-6 lg:px-8 lg:pb-24 lg:pt-40">
+            <div class="mx-auto grid max-w-7xl items-end gap-14 lg:grid-cols-[1.2fr_0.8fr]">
+                <div class="reveal">
+                    <div class="mb-6 inline-flex items-center gap-3 rounded-full border border-accent/20 bg-accent/10 px-4 py-2 font-mono text-xs uppercase tracking-[0.28em] text-accent">
+                        Beyond AI theater
+                    </div>
 
-    <!-- About Section -->
-    <section id="about" class="py-16 bg-lightcream">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-4">We Drive Results That Matter</h2>
-                <div class="w-24 h-1 bg-primary mx-auto"></div>
-            </div>
-            <div class="max-w-4xl mx-auto text-lg text-gray-700 space-y-6">
-                <p>
-                    With years of experience across diverse industries, we partner with ambitious business leaders to overcome challenges and capitalize on opportunities. Our approach combines strategic thinking with practical execution, ensuring sustainable growth and competitive advantage.
-                </p>
-                <p>
-                    We believe in lean methodologies, data-driven decisions, and collaborative partnerships that deliver measurable outcomes for our clients.
-                </p>
-            </div>
-        </div>
-    </section>
+                    <h1 class="max-w-5xl text-5xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl">
+                        AI systems that ship, stick, and create real value.
+                    </h1>
 
-    <!-- Services Section -->
-    <section id="services" class="py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-4">How We Help You Succeed</h2>
-                <div class="w-24 h-1 bg-primary mx-auto"></div>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-cream p-6 rounded-lg shadow-lg hover:shadow-xl transition">
-                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Strategic Planning & Execution</h3>
-                    <p class="text-gray-600">Transform your vision into actionable roadmaps with clear milestones and measurable outcomes.</p>
-                </div>
-                
-                <div class="bg-cream p-6 rounded-lg shadow-lg hover:shadow-xl transition">
-                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Sales Optimization</h3>
-                    <p class="text-gray-600">Streamline your sales processes, improve conversion rates, and build high-performing sales teams.</p>
-                </div>
-                
-                <div class="bg-cream p-6 rounded-lg shadow-lg hover:shadow-xl transition">
-                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Market Expansion</h3>
-                    <p class="text-gray-600">Identify new market opportunities and develop go-to-market strategies that drive revenue growth.</p>
-                </div>
-                
-                <div class="bg-cream p-6 rounded-lg shadow-lg hover:shadow-xl transition">
-                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Operational Excellence</h3>
-                    <p class="text-gray-600">Eliminate bottlenecks, optimize workflows, and create scalable systems for sustainable growth.</p>
-                </div>
-                
-                <div class="bg-cream p-6 rounded-lg shadow-lg hover:shadow-xl transition">
-                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Leadership Development</h3>
-                    <p class="text-gray-600">Empower your leadership team with the skills and frameworks needed to navigate complex challenges.</p>
-                </div>
-                
-                <div class="bg-cream p-6 rounded-lg shadow-lg hover:shadow-xl transition">
-                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Performance Optimization</h3>
-                    <p class="text-gray-600">Analyze and improve business performance metrics to maximize efficiency and profitability.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+                    <p class="mt-6 max-w-3xl text-lg leading-8 text-mist/80 sm:text-xl">
+                        For teams that are done with demos, decks, and vague strategy. I help turn real workflows, internal tools, and product ideas into production-grade AI systems that are measurable, reliable, and useful.
+                    </p>
 
-    <!-- Why Choose Us Section -->
-    <section class="py-16 bg-lightcream">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-4">Proven Approach. Real Results.</h2>
-                <div class="w-24 h-1 bg-primary mx-auto"></div>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="flex items-start space-x-4">
-                    <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold mb-2">Lean Strategy</h3>
-                        <p class="text-gray-600">No unnecessary complexity. Focus on what drives impact.</p>
+                    <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+                        <a href="#contact" class="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-bold text-ink transition hover:-translate-y-0.5 hover:bg-white">
+                            Discuss your build
+                        </a>
+                        <a href="#offerings" class="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/5">
+                            See how I work
+                        </a>
                     </div>
                 </div>
-                
-                <div class="flex items-start space-x-4">
-                    <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold mb-2">Smart Execution</h3>
-                        <p class="text-gray-600">From planning to implementation, we ensure results happen.</p>
-                    </div>
-                </div>
-                
-                <div class="flex items-start space-x-4">
-                    <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold mb-2">Industry Expertise</h3>
-                        <p class="text-gray-600">Deep experience across technology, SaaS, and professional services.</p>
-                    </div>
-                </div>
-                
-                <div class="flex items-start space-x-4">
-                    <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold mb-2">Collaborative Partnership</h3>
-                        <p class="text-gray-600">We work alongside your team, not as outsiders.</p>
-                    </div>
-                </div>
-                
-                <div class="flex items-start space-x-4">
-                    <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold mb-2">Measurable Outcomes</h3>
-                        <p class="text-gray-600">Every engagement includes clear metrics and accountability.</p>
-                    </div>
-                </div>
-                
-                <div class="flex items-start space-x-4">
-                    <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold mb-2">Agile Methodology</h3>
-                        <p class="text-gray-600">Flexible approach that adapts to changing business needs and market conditions.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-gradient-to-br from-primary to-secondary text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to Accelerate Your Growth?</h2>
-            <p class="text-xl mb-8 opacity-90 max-w-3xl mx-auto">
-                Every successful transformation starts with a conversation. Let's discuss your challenges, explore opportunities, and create a roadmap for your success.
-            </p>
-            <div class="mb-8">
-                <p class="text-lg font-semibold mb-6">Contact us today for a complimentary strategy session.</p>
-                <div class="space-y-2 text-lg">
-                    <!-- <p><strong>Phone:</strong> (555) 123-4567</p> -->
-                    <p><strong>Email:</strong> info@patronuscorp.com</p>
-                    <!-- <p><strong>LinkedIn:</strong> /company/yourbusiness</p> -->
+                <div class="reveal rounded-[2rem] border border-white/10 bg-white/5 p-6 shadow-glow backdrop-blur-sm lg:p-8">
+                    <div class="mb-8 flex items-center justify-between">
+                        <span class="font-mono text-xs uppercase tracking-[0.3em] text-accent">Execution lens</span>
+                        <span class="rounded-full border border-white/10 px-3 py-1 font-mono text-[11px] text-mist/70">Builder first</span>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="rounded-3xl border border-white/10 bg-black/20 p-5">
+                            <div class="font-mono text-xs uppercase tracking-[0.22em] text-accent">What this is</div>
+                            <p class="mt-3 text-base leading-7 text-mist/85">
+                                Applied AI expertise from an engineering perspective: architecture, workflows, evals, reliability, tooling, delivery.
+                            </p>
+                        </div>
+
+                        <div class="rounded-3xl border border-white/10 bg-black/20 p-5">
+                            <div class="font-mono text-xs uppercase tracking-[0.22em] text-accent">What this is not</div>
+                            <p class="mt-3 text-base leading-7 text-mist/85">
+                                Another “AI transformation” pitch with no code, no systems thinking, and no path from prototype to daily use.
+                            </p>
+                        </div>
+
+                        <blockquote class="rounded-3xl border border-white/10 bg-white/5 p-5">
+                            <p class="text-lg font-semibold text-white">
+                                “Talk is cheap. Show me the code.”
+                            </p>
+                            <footer class="mt-3 font-mono text-xs uppercase tracking-[0.22em] text-mist/60">
+                                Linus Torvalds
+                            </footer>
+                        </blockquote>
+                    </div>
                 </div>
             </div>
-            <a href="mailto:info@patronuscorp.com" class="bg-cream text-primary border-4 border-cream px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary hover:text-cream hover:border-primary transition transform hover:scale-105">
-                Get In Touch
-            </a>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer class="bg-lightcream text-gray-800 py-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="mb-4">
-                <p class="text-gray-600">&copy; 2025 Patronus Shield Software LLP. </p>
-                <p class="text-gray-600">All rights reserved.</p>
+        <section id="work" class="px-4 py-16 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-7xl">
+                <div class="reveal flex flex-col gap-8 border-y border-white/10 py-10 lg:flex-row lg:items-end lg:justify-between">
+                    <div>
+                        <p class="font-mono text-xs uppercase tracking-[0.32em] text-accent">What I help build</p>
+                        <h2 class="mt-3 text-3xl font-bold text-white sm:text-4xl">Real systems. Real constraints. Real usage.</h2>
+                    </div>
+                    <p class="max-w-2xl text-base leading-7 text-mist/75">
+                        The work usually sits at the intersection of product, engineering, and operations: AI features, internal copilots, workflow automation, decision support tools, and end-to-end systems that need to hold up under real usage.
+                    </p>
+                </div>
+
+                <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+                    <article class="interactive-card interactive-card-dark reveal rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
+                        <p class="card-kicker font-mono text-xs uppercase tracking-[0.22em] text-accent">01</p>
+                        <h3 class="mt-4 text-xl font-semibold text-white">AI copilots</h3>
+                        <p class="mt-3 leading-7 text-mist/75">Internal assistants and domain-aware workflows that help teams move faster without creating chaos.</p>
+                    </article>
+
+                    <article class="interactive-card interactive-card-dark reveal rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
+                        <p class="card-kicker font-mono text-xs uppercase tracking-[0.22em] text-accent">02</p>
+                        <h3 class="mt-4 text-xl font-semibold text-white">Workflow automation</h3>
+                        <p class="mt-3 leading-7 text-mist/75">Automations that eliminate repetitive operational work and connect humans, systems, and models cleanly.</p>
+                    </article>
+
+                    <article class="interactive-card interactive-card-dark reveal rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
+                        <p class="card-kicker font-mono text-xs uppercase tracking-[0.22em] text-accent">03</p>
+                        <h3 class="mt-4 text-xl font-semibold text-white">Idea to production</h3>
+                        <p class="mt-3 leading-7 text-mist/75">From messy opportunity to scoped build, architecture, iteration, deployment, and operating discipline.</p>
+                    </article>
+
+                    <article class="interactive-card interactive-card-dark reveal rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
+                        <p class="card-kicker font-mono text-xs uppercase tracking-[0.22em] text-accent">04</p>
+                        <h3 class="mt-4 text-xl font-semibold text-white">Reliability layer</h3>
+                        <p class="mt-3 leading-7 text-mist/75">Prompting is the easy part. I help with evaluation, guardrails, observability, latency, and failure modes too.</p>
+                    </article>
+                </div>
             </div>
+        </section>
+
+        <section id="approach" class="px-4 py-16 sm:px-6 lg:px-8">
+            <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+                <div class="reveal">
+                    <p class="font-mono text-xs uppercase tracking-[0.32em] text-accent">Approach</p>
+                    <h2 class="mt-3 text-3xl font-bold text-white sm:text-4xl">Engineered for what happens after the demo.</h2>
+                    <p class="mt-5 max-w-xl leading-7 text-mist/75">
+                        The difference is not “using AI.” The difference is whether the thing integrates into real work, handles ambiguity, earns trust, and keeps delivering value after the first demo.
+                    </p>
+                </div>
+
+                <div class="grid gap-5">
+                    <div class="interactive-card interactive-card-dark reveal rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
+                        <div class="card-kicker font-mono text-xs uppercase tracking-[0.22em] text-accent">01 Diagnose the leverage</div>
+                        <p class="mt-3 text-base leading-7 text-mist/75">
+                            Start with the actual workflow, bottleneck, and data shape. Not with a trendy model or generic “AI strategy” deck.
+                        </p>
+                    </div>
+
+                    <div class="interactive-card interactive-card-dark reveal rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
+                        <div class="card-kicker font-mono text-xs uppercase tracking-[0.22em] text-accent">02 Build the system</div>
+                        <p class="mt-3 text-base leading-7 text-mist/75">
+                            Design the UX, orchestration, model calls, fallback paths, instrumentation, and operational boundaries needed for real adoption.
+                        </p>
+                    </div>
+
+                    <div class="interactive-card interactive-card-dark reveal rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
+                        <div class="card-kicker font-mono text-xs uppercase tracking-[0.22em] text-accent">03 Ship and harden</div>
+                        <p class="mt-3 text-base leading-7 text-mist/75">
+                            Test failure modes, tighten the loop with user feedback, and move toward something your team can actually rely on.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="offerings" class="px-4 py-16 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-7xl">
+                <div class="reveal mb-10 max-w-3xl">
+                    <p class="font-mono text-xs uppercase tracking-[0.32em] text-accent">Offerings</p>
+                    <h2 class="mt-3 text-3xl font-bold text-white sm:text-4xl">Practical ways to work together.</h2>
+                </div>
+
+                <div class="grid gap-6 lg:grid-cols-3">
+                    <article class="interactive-card interactive-card-dark reveal rounded-[2rem] border border-white/10 bg-white/5 p-7">
+                        <h3 class="text-2xl font-semibold text-white">Advisory with teeth</h3>
+                        <p class="mt-4 leading-7 text-mist/75">
+                            For leaders who need technical clarity on where AI can create leverage, what to avoid, and how to sequence the work sensibly.
+                        </p>
+                    </article>
+
+                    <article class="interactive-card interactive-card-dark reveal rounded-[2rem] border border-white/10 bg-white/5 p-7">
+                        <h3 class="text-2xl font-semibold text-white">Build partner</h3>
+                        <p class="mt-4 leading-7 text-mist/75">
+                            For teams that want a hands-on partner to scope, architect, and ship AI-powered systems from concept through production reality.
+                        </p>
+                    </article>
+
+                    <article class="interactive-card interactive-card-dark reveal rounded-[2rem] border border-white/10 bg-white/5 p-7">
+                        <h3 class="text-2xl font-semibold text-white">System review</h3>
+                        <p class="mt-4 leading-7 text-mist/75">
+                            For companies with something already in motion that needs a sharper architecture, stronger reliability, or less demo-ware.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="px-4 py-16 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-7xl">
+                <div class="reveal rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/10 to-white/5 p-8 lg:p-12">
+                    <div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+                        <div>
+                            <p class="font-mono text-xs uppercase tracking-[0.32em] text-accent">Operating principle</p>
+                            <h2 class="mt-4 text-3xl font-bold text-white sm:text-4xl">Use AI where it creates real leverage. Engineer the rest properly.</h2>
+                        </div>
+                        <p class="text-lg leading-8 text-mist/80">
+                            AI is incredible technology. It is also easy to misuse. The value comes from applying it with discipline: the right workflow, the right guardrails, the right architecture, and enough engineering rigor to make it useful beyond the first week.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="px-4 pb-20 pt-16 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-5xl rounded-[2rem] border border-white/10 bg-sand p-8 text-ink shadow-glow sm:p-10 lg:p-14">
+                <div class="reveal text-center">
+                    <p class="font-mono text-xs uppercase tracking-[0.32em] text-accentDeep">Contact</p>
+                    <h2 class="mt-3 text-3xl font-extrabold text-slate-900 sm:text-4xl">If you want AI to actually work inside the business, let’s talk.</h2>
+                    <p class="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
+                        Whether you are exploring a high-leverage use case, trying to get a build over the line, or trying to replace hype with execution, I can help figure out the right next step.
+                    </p>
+
+                    <div class="mt-10 flex flex-col items-center justify-center gap-4">
+                        <a href="mailto:info@patronuscorp.com" class="inline-flex items-center justify-center rounded-full bg-ink px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-slate-800">
+                            info@patronuscorp.com
+                        </a>
+                        <span class="text-center font-mono text-xs uppercase tracking-[0.22em] text-slate-500">Initial conversation, no fluff</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-white/10 px-4 py-8 sm:px-6 lg:px-8">
+        <div class="mx-auto flex max-w-7xl flex-col gap-3 text-sm text-mist/55 sm:flex-row sm:items-center sm:justify-between">
+            <div>&copy; 2026 Patronus Shield Software LLP</div>
+            <div class="font-mono uppercase tracking-[0.18em]">Execution over theater</div>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
-        
+        const siteNav = document.getElementById('siteNav');
+        const revealElements = document.querySelectorAll('.reveal');
+
         mobileMenuBtn.addEventListener('click', () => {
+            const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+            mobileMenuBtn.setAttribute('aria-expanded', String(!isExpanded));
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+            anchor.addEventListener('click', (event) => {
+                const target = document.querySelector(anchor.getAttribute('href'));
+                if (!target) {
+                    return;
                 }
-                // Close mobile menu if open
+
+                event.preventDefault();
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+
                 mobileMenu.classList.add('hidden');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
             });
         });
 
-        // Add scroll effect to navigation
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.16
+        });
+
+        revealElements.forEach((element) => {
+            revealObserver.observe(element);
+        });
+
         window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('shadow-lg');
+            if (window.scrollY > 24) {
+                siteNav.classList.add('scale-[0.99]');
             } else {
-                nav.classList.remove('shadow-lg');
+                siteNav.classList.remove('scale-[0.99]');
             }
         });
     </script>
